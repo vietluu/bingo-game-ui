@@ -1,14 +1,15 @@
 import Input from "../components/Input";
 import  IconKey  from "../assets/svg/keyIcon.svg?react";
-
 import IconMail from "../assets/svg/mailIcon.svg?react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import bingo from "../../public/logo.png";
 import Button from "../components/Button";
+import { useLocaleNavigation } from "../common/useLocaleNavigation";
+import { useTranslation } from "react-i18next";
 const Login = () => {
+  const { t } = useTranslation();
   const ref = React.useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
+  const { navigateWithLocale } = useLocaleNavigation();
   return (
     <div className="flex items-center justify-center min-h-screen px-4 w-full h-screen bg-[url('/public/gameBg.png')]  bg-cover bg-center">
       <div className="bg-white items-center pb-8 px-4 pt-16 flex flex-col gap-y-8 rounded-4xl border-b-[3px] border-[#FF6D91] w-full max-w-sm relative">
@@ -18,7 +19,7 @@ const Login = () => {
           className="absolute -top-[30px] left-10 w-3/4"
         />
         <h2 className="text-3xl font-['Mochiy_Pop_P_One'] font-bold text-center text-royal-blue-600 !text-shadow-[0_4px_0_rgba(65,118,199,0.3)]">
-          ログイン
+          {t('BINGO.AUTH.LOGIN.TITLE')}
         </h2>
         <div className="flex flex-col gap-y-4 w-full">
           <Input
@@ -39,7 +40,7 @@ const Login = () => {
           />
 
           <span
-            onClick={() => navigate("/signup")}
+            onClick={() => navigateWithLocale("/signup")}
             className="w-full text-light-blue-600 text-sm text-right cursor-pointer "
           >
             パスワードをお忘れですか？{" "}
